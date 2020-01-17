@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>CDRA CO2 Saver Calculator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<header class="title">CO2 Conversion Calculator</header>
+
+		<div class="row">
+			<div class="col-md-12 col-lg-5 align-self-center">
+				<form method="post" class="container">
+					<div class="row">
+						<label for="Metal" class="col-lg-6 m-0">Enter Tons Of Metal:</label>
+						<div class="col-lg-6">
+							<input type="text" name="Metal" id="Metal" class="form-control form-control-sm">
+						</div>
+					</div>
+					<div class="row">
+						<label for="Concrete" class="col-lg-6 m-0">Enter Tons Of Concrete:</label>
+						<div class="col-lg-6">
+							<input type="text" name="Concrete" id="Concrete" class="form-control form-control-sm">
+						</div>
+					</div>
+					<div class="row">
+						<label for="Plastic" class="col-lg-6 m-0">Enter Tons Of Plastic:</label>
+						<div class="col-lg-6">
+							<input type="text" name="Plastic" id="Plastic" class="form-control form-control-sm">
+						</div>
+					</div>
+					<div class="row">
+						<label for="Drywall" class="col-lg-6 m-0">Enter Tons Of Drywall:</label>
+						<div class="col-lg-6">
+							<input type="text" name="Drywall" id="Drywall" class="form-control form-control-sm">
+						</div>
+					</div>
+					<div class="row">
+						<label for="OCC" class="col-lg-6 m-0">Enter Tons Of OCC:</label>
+						<div class="col-lg-6">
+							<input type="text" name="OCC" id="OCC" class="form-control form-control-sm">
+						</div>
+					</div>
+					<div class="row">
+						<label for="Wood" class="col-lg-6 m-0">Enter Tons Of Wood:</label>
+						<div class="col-lg-6">
+							<input type="text" name="Wood" id="Wood" class="form-control form-control-sm">
+						</div>
+					</div>
+				</form>
+
+				<div class="d-flex justify-content-center mt-3 mb-3">
+					<button type="button" name="calculate" value="Calculate" onclick="Calculate()"
+						class="btn btn1 mr-2">Calculate</button>
+					<button type="button" name="refresh" value="Refresh" onclick="location.reload()"
+						class="btn btn2 ml-2">Refresh</button>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-7">
+				<div class="wrapper mb-3">
+					<canvas id="myChart"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<table class="table table-sm table-responsive" id=myTable>
+			<tr>
+				<th></th>
+				<th>Tons Of CO2 Saved Per Ton of Reycled Item</th>
+				<th>Bulbs Saved</th>
+				<th>Gallons Of Gas Saved</th>
+				<th>Vehicles Saved</th>
+				<th>Home Electricity Saved</th>
+			</tr>
+			<tr>
+				<th id="metal1">Metal</th>
+				<td><span id="result"></span></td>
+				<td><span id="bulb"></span></td>
+				<td><span id="gas"></span></td>
+				<td><span id="vic"></span></td>
+				<td><span id="home"></span></td>
+			</tr>
+			<tr>
+				<th>Concrete</th>
+				<td><span id="result1"></span></td>
+				<td><span id="bulb1"></span></td>
+				<td><span id="gas1"></span></td>
+				<td><span id="vic1"></span></td>
+				<td><span id="home1"></span></td>
+			</tr>
+			<tr>
+				<th>Plastic</th>
+				<td><span id="result2"></span></td>
+				<td><span id="bulb2"></span></td>
+				<td><span id="gas2"></span></td>
+				<td><span id="vic2"></span></td>
+				<td><span id="home2"></span></td>
+			</tr>
+			<tr>
+				<th>Drywall</th>
+				<td><span id="result3"></span></td>
+				<td><span id="bulb3"></span></td>
+				<td><span id="gas3"></span></td>
+				<td><span id="vic3"></span></td>
+				<td><span id="home3"></span></td>
+			</tr>
+			<tr>
+				<th>OCC</th>
+				<td><span id="result4"></span></td>
+				<td><span id="bulb4"></span></td>
+				<td><span id="gas4"></span></td>
+				<td><span id="vic4"></span></td>
+				<td><span id="home4"></span></td>
+			</tr>
+			<tr>
+				<th>Wood</th>
+				<td><span id="result5"></span></td>
+				<td><span id="bulb5"></span></td>
+				<td><span id="gas5"></span></td>
+				<td><span id="vic5"></span></td>
+				<td><span id="home5"></span></td>
+			</tr>
+		</table>
+
+		<div class="card mb-5">
+			<h5 class="card-header">Key</h3>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<strong>Tons of CO2 saved per ton of recycled item</strong> — Includes all greenhouse gases that
+						are
+						saved by recycling a ton of this material
+					</li>
+					<li class="list-group-item">
+						<strong>Bulbs saved</strong> — The annual energy from this many standard 60-watt incandescent
+						light
+						bulbs is saved by recycling a ton of this material
+					</li>
+					<li class="list-group-item">
+						<strong>Gallons of gas saved</strong> — The equivalent amount of energy in this number of
+						gallons of
+						gasoline is saved by recycling a ton of this material
+					</li>
+					<li class="list-group-item">
+						<strong>Vehicles Saved</strong> — Recycling this material per ton equates to removing the
+						greenhouse
+						gas emissions of this many
+						vehicles.
+					</li>
+					<li class="list-group-item">
+						<strong>Home electricity</strong> — Recycling a ton of this material saves enough energy to
+						power
+						this many houses annually.
+					</li>
+				</ul>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<script src="script.js"></script>
+</body>
+
+</html>
